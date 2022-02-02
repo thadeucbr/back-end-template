@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  database:
+    image: mysql:5.7
+    container_name: sample_database
+    restart: always
+    networks:
+      - sample-network
+    environment:
+      MYSQL_ROOT_PASSWORD: ${TYPEORM_PASSWORD}
+      MYSQL_DATABASE: ${TYPEORM_DATABASE}
+    ports:
+      - '${TYPEORM_PORT}:${TYPEORM_PORT}'
+    expose:
+      - ${TYPEORM_PORT}
+    volumes:
+      - data:/data/MYSQL
+
+  app:
+    build: .
+    container_name: sample_api
+    restart: unless-stopped
+    command:  bash -c "yarn dev"
+    networks:
+      - sample-network
+    ports:
+      - '${APP_PORT}:${APP_PORT}'
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
+    links:
+      - database
+    depends_on:
+      - database
+
+volumes:
+  data:
+    driver: local
+
+networks:
+  sample-network:
+    name: sample-network
