@@ -1,4 +1,8 @@
-import { ICreateUserDTO } from '@modules/userSample/dto/IUserDTO';
+import {
+  ICreateUserDTO,
+  IUpdateUserDTO,
+} from '@modules/userSample/dto/IUserDTO';
+import argon2 from 'argon2';
 import { getRepository, Repository } from 'typeorm';
 import IUserRepository from '../../repositoriesInterface/IUserRepository';
 import User from '../entities/User';
@@ -8,25 +12,35 @@ export default class UserRepository implements IUserRepository {
 
   constructor() {
     this.ormRepository = getRepository(User);
-  };
+  }
 
   public async create(data: ICreateUserDTO): Promise<User> {
-      const user = this.ormRepository.create(data);
-      await this.ormRepository.save(user);
-      return user;
-  };
+    const userData = data;
+    userData.password = await argon2.hash(data.password, { type: argon2.argon2d });
+    
+    const user = this.ormRepository.create(userData);
+    await this.ormRepository.save(user);
+    
+    return user;
+  }
 
   public async list(): Promise<User[]> {
-      const users = await this.ormRepository.find()
-      return users;
-  };
+    const users = await this.ormRepository.find();
+    return users;
+  }
 
   public async find(id: any): Promise<User> {
-      const user = await this.ormRepository.findOne(id);
-      return user;
-  };
+    const user = await this.ormRepository.findOne(id);
+    return user;
+  }
 
-  async remove(id: any): Promise<void> {
-      await this.ormRepository.delete(id);
+  public async remove(id: any): Promise<void> {
+    await this.ormRepository.delete(id);
+  }
+
+  public async update(data: IUpdateUserDTO): Promise<User> {
+    const { id, body } = data;
+    const updatedUser = await this.ormRepository.update({ id }, body);
+    return updatedUser.raw;
   }
 }
