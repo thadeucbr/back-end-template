@@ -6,5 +6,6 @@ export default interface IUserRepository {
   list(): Promise<User[]>;
   find(id: Number): Promise<User>;
   remove(id: any): void;
-  update(data: IUpdateUserDTO): Promise<User>
+  update(data: IUpdateUserDTO): Promise<User>;
+  findByEmail(email: string): Promise<User>;
 };

@@ -45,4 +45,13 @@ export default class UserController {
 
     return response.status(200).json(foundUser);
   }
+
+  async login(request: Request, response: Response): Promise<Response> {
+    const { email, password } = request.body;
+    
+    const generateToken = container.resolve(userService.login);
+    const token = await generateToken.execute({ email, password });
+    
+    return response.status(200).json(token)
+  }
 }
