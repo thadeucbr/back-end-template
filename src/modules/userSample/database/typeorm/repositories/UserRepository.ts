@@ -14,6 +14,11 @@ export default class UserRepository implements IUserRepository {
     this.ormRepository = getRepository(User);
   }
 
+  public async findByEmail(email: string): Promise<User> {
+    const userData = await this.ormRepository.findOne({ where: { email }})
+    return userData;
+  }
+
   public async create(data: ICreateUserDTO): Promise<User> {
     const userData = data;
     userData.password = await argon2.hash(data.password, { type: argon2.argon2d });
