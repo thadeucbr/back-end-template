@@ -11,3 +11,11 @@ content-type: application/json
 }
 
 GET http://localhost:3333/user
+
+POST http://localhost:3333/user/login
+content-type: application/json
+
+{
+  "email": "sample@email.com",
+  "password": "samplePassword"
+}
