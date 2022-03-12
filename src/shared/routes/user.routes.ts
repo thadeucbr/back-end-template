@@ -47,4 +47,15 @@ userRoutes
     userController.remove,
   );
 
+userRoutes.post(
+  '/login',
+  celebrate({
+    [Segments.BODY]: {
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+    },
+  }),
+  userController.login
+);
+
 export default userRoutes;
