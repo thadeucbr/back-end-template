@@ -22,7 +22,7 @@ services:
     build: .
     container_name: sample_api
     restart: unless-stopped
-    command:  bash -c "yarn dev"
+    command:  bash -c "yarn && yarn migrate && yarn dev"
     networks:
       - sample-network
     ports:
