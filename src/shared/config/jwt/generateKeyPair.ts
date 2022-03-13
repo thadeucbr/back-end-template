@@ -4,27 +4,29 @@ import path from 'path';
 
 export default function newKey(): void {
   generateKeyPair(
-    'ec',
+    'rsa',
     {
-      namedCurve: 'secp256k1',
+      modulusLength: 1024 * 2,
       publicKeyEncoding: {
-        type: 'spki',
-        format: 'der',
+          type: 'spki',
+          format: 'pem'
       },
       privateKeyEncoding: {
-        type: 'pkcs8',
-        format: 'der',
-      },
+          type: 'pkcs8',
+          format: 'pem',
+          cipher: 'aes-256-cbc',
+          passphrase: 'passphrase'
+      }
     },
     (err, publicKey, privateKey) => {
       if (!err) {
         fs.writeFileSync(
           path.join(__dirname, 'public.pem'),
-          publicKey.toString('hex').trim(),
+          publicKey.trim(),
         );
         fs.writeFileSync(
           path.join(__dirname, 'private.pem'),
-          privateKey.toString('hex').trim(),
+          privateKey.trim(),
         );
       } else {
         console.log('Errr is: ', err);
