@@ -1,9 +1,11 @@
 import UserController from '@modules/userSample/controllers/UserController';
+import { TokenValidation } from '@shared/middlewares';
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 
 const userRoutes = Router();
 const userController = new UserController();
+const validation = new TokenValidation();
 
 userRoutes
   .route('/')
@@ -20,7 +22,7 @@ userRoutes
     }),
     userController.create,
   )
-  .get(userController.list);
+  .get(validation.adminRoute,userController.list);
 
 userRoutes
   .route('/:id')
