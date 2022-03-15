@@ -11,7 +11,7 @@ import routes from './routes';
 import { errors } from 'celebrate';
 import newKey from './config/jwt/generateKeyPair';
 
-newKey()
+// newKey()
 
 const app = express();
 const port = process.env.APP_PORT || 3000;
