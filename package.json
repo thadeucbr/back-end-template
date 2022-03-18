@@ -2,7 +2,7 @@
   "name": "curupiras",
   "version": "1.0.2",
   "description": "",
-  "keywords": [],
+  "keywords": ["Express", "Template", "Back-end", "TypeScript", "TypeORM"],
   "author": "Thadeu Castelo Branco Ramos <thadeucbr@gmail.com>",
   "license": "ISC",
   "bugs": {
