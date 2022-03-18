@@ -2,7 +2,8 @@
   "name": "curupira",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/shared/server.ts",
+  "bin": "./bin/cli.js",
   "scripts": {
     "build": "tsc",
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/server.ts",
