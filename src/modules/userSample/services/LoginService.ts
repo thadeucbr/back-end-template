@@ -3,7 +3,7 @@ import IUserRepository from '../database/repositoriesInterface/IUserRepository';
 import argon2 from 'argon2';
 import AppError from '@shared/errors/AppError';
 import jwt from 'jsonwebtoken';
-import { privateKey, publicKey } from '@shared/config/jwt/readKey';
+import { privateKey } from '@shared/config/jwt/readKey';
 
 @injectable()
 export default class LoginService {
@@ -21,8 +21,8 @@ export default class LoginService {
   private generateToken(userId: string) {
     const token = jwt.sign({ sub: userId }, privateKey, { algorithm: 'RS256', expiresIn: '1h' })
     return token;
-
   }
+  
   async execute(data: { email: string, password: string }): Promise<string> {
     const userId = await this.verifyPassword(data);
     const token = this.generateToken(userId);
