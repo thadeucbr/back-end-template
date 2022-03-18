@@ -3,7 +3,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const { execSync } = require('child_process');
+const readline = require('readline');
 
+const inquirer = readline.createInterface({input: process.stdin, output: process.stdout})
+let nomeProjeto;
+
+inquirer.question('Qual o nome do projeto?', nome => nomeProjeto = nome);
+console.log(nomeProjeto);
 const runCommand = command => {
   try { 
     execSync(`${command}`, {stdio: 'inherit'})
