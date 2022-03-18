@@ -52,6 +52,6 @@ export default class UserController {
     const generateToken = container.resolve(userService.login);
     const token = await generateToken.execute({ email, password });
     
-    return response.status(200).json(token)
+    return response.status(200).json({message: token})
   }
 }
