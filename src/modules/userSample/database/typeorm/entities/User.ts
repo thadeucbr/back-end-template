@@ -12,7 +12,7 @@ class User {
   phone: string;
 
   @Column()
-  age: Number;
+  age: number;
 
   @Column()
   email: string;

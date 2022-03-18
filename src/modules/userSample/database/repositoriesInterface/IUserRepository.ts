@@ -8,4 +8,4 @@ export default interface IUserRepository {
   remove(id: any): void;
   update(data: IUpdateUserDTO): Promise<User>;
   findByEmail(email: string): Promise<User>;
-};
+}

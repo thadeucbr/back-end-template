@@ -3,7 +3,7 @@ export interface ICreateUserDTO {
   email: string;
   phone: string;
   password: string;
-  age: Number;
+  age: number;
   admin?: boolean;
 }
 
@@ -14,7 +14,7 @@ export interface IUpdateUserDTO {
     email?: string;
     phone?: string;
     password?: string;
-    age?: Number;
+    age?: number;
     admin?: boolean;
   };
 }
