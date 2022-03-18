@@ -1,5 +1,5 @@
 {
-  "name": "@curupira/create-backend-ts",
+  "name": "curupiras",
   "version": "1.0.0",
   "description": "",
   "main": "src/shared/server.ts",
