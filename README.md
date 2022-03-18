@@ -6,7 +6,9 @@
  2. [Requisitos para utilizar o curupiras](#requisitos)
  3. [O que vem instalado no curupira?](#o-que-vem-instalado)
  4. [Instalando o Curupiras](#instalação)
- 5. [Configurando as variáveis de ambiente](#configurando-as-variáveis-de-ambiente)
+ 5. [🚧Configurando as variáveis de ambiente🚧](#configurando-as-variáveis-de-ambiente)
+ 6. [🚧Iniciando o Curupiras🚧](#)
+ 7. [🚧Scripts Json🚧](#) 
 
 ## Introdução
 
@@ -58,7 +60,7 @@ Hoje o Curupiras vem com as seguintes libs instaladas:
 
 Execute o comando `npx curupiras nome-do-seu-projeto`, pode ser que apareça uma mensagem pedindo para instalar o curupiras, digite "y" ou "s".
 
-## Configurando as variáveis de ambiente (Ainda escrevendo)
+## Configurando as variáveis de ambiente 🚧(Ainda escrevendo)🚧
 
 **TYPEORM PATHS**
 
