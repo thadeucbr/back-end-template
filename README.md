@@ -1,3 +1,4 @@
+![](https://img.shields.io/npm/l/curupiras) ![](https://img.shields.io/librariesio/release/npm/curupiras) ![](https://img.shields.io/npm/v/curupiras) ![](https://img.shields.io/npm/dt/curupiras)
 # Curupiras (Back-end Template)
 
 ## Conteúdo
