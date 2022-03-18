@@ -1,7 +1,18 @@
 {
   "name": "curupiras",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
+  "keywords": [],
+  "author": "Thadeu Castelo Branco Ramos <thadeucbr@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thadeucbr/back-end-template/issues"
+  },
+  "homepage": "https://github.com/thadeucbr/back-end-template#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thadeucbr/back-end-template"
+  },
   "main": "src/shared/server.ts",
   "bin": "./bin/cli.js",
   "scripts": {
@@ -11,9 +22,6 @@
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "migrate": "npm run typeorm -- migration:run"
   },
-  "keywords": [],
-  "author": "Thadeu Castelo Branco Ramos",
-  "license": "ISC",
   "dependencies": {
     "argon2": "^0.28.4",
     "celebrate": "^15.0.1",
