@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/shared/server.ts",
   "bin": "./bin/cli.js",
+  "private": "false",
   "scripts": {
     "build": "tsc",
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/server.ts",
