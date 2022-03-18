@@ -14,14 +14,15 @@ export default class TokenValidation {
   async userRoute(req: RequestToken, _res: Response, next: NextFunction) {
     const findUserById = container.resolve(FindUserByIdService);
     const { authorization } = req.headers;
+    const token = authorization.replace('Bearer', '').trim();
     try {
-      const payload = jwt.verify(authorization, publicKey, {
+      const payload = jwt.verify(token, publicKey, {
         algorithms: ['RS256'],
       });
       const userData = await findUserById.execute(payload.sub);
-      if (userData === undefined) throw new AppError('Token inválido', 403)
+      if (userData === undefined) throw new AppError('Token inválido', 403);
       req.user = userData;
-      next()
+      next();
     } catch (error) {
       throw new AppError(error.message, 400);
     }
@@ -29,15 +30,16 @@ export default class TokenValidation {
   async adminRoute(req: RequestToken, _res: Response, next: NextFunction) {
     const findUserById = container.resolve(FindUserByIdService);
     const { authorization } = req.headers;
+    const token = authorization.replace('Bearer', '').trim();
     try {
-      const payload = jwt.verify(authorization, publicKey, {
+      const payload = jwt.verify(token, publicKey, {
         algorithms: ['RS256'],
       });
       const userData = await findUserById.execute(payload.sub);
-      if (userData === undefined) throw new AppError('Token inválido', 403)
-      if (userData.admin === false) throw new AppError('Token inválido', 401)
+      if (userData === undefined) throw new AppError('Token inválido', 403);
+      if (userData.admin === false) throw new AppError('Token inválido', 401);
       req.user = userData;
-      next()
+      next();
     } catch (error) {
       throw new AppError(error.message, 400);
     }
