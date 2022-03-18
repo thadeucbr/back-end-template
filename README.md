@@ -58,7 +58,7 @@ Hoje o Curupiras vem com as seguintes libs instaladas:
 
 Execute o comando `npx curupiras nome-do-seu-projeto`, pode ser que apareça uma mensagem pedindo para instalar o curupiras, digite "y" ou "s".
 
-## Configurando as variáveis de ambiente
+## Configurando as variáveis de ambiente (Ainda escrevendo)
 
 **TYPEORM PATHS**
 
