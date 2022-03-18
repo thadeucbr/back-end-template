@@ -9,7 +9,7 @@ export default (err: Error, _request: Request, response: Response, _next: NextFu
     });
   }
   console.log('\x1b[31m%s\x1b[0m', '************* ⚠️  ERRO ⚠️ *************')
-  console.error(err);
+  console.error(err.message);
   console.log('\x1b[31m%s\x1b[0m', '*************************************')
   return response.status(500).json({
     status: status[500],
