@@ -21,7 +21,7 @@ const installDepsCommand = `cd ${repoName} && npm install`;
 console.log(`Criando o projeto ${repoName}`)
 const checkedOut = runCommand(gitCheckoutCommand);
 if(!checkedOut) {
-  console.error("\x1b[31m\x1b[0m",'Algo deu errado durante a criação do projeto, não foi possível criar o projeto.')
+  console.error("\x1b[31m",'Algo deu errado durante a criação do projeto, não foi possível criar o projeto.')
   process.exit(-1);
 }
 console.log('Projeto criado com sucesso')
@@ -29,11 +29,11 @@ console.log('Projeto criado com sucesso')
 console.log(`Instalando dependencias para ${repoName}`);
 const installedDeps = runCommand(installDepsCommand);
 if(!installedDeps) { 
-  console.error("\x1b[31m\x1b[0m",'Algo deu errado durante a instalação das dependencias do projeto.')
+  console.error("\x1b[31m",'Algo deu errado durante a instalação das dependencias do projeto.')
   process.exit(-1);
 }
 console.log(`Projeto ${repoName} criado com sucesso.`)
-console.log('\x1b[36m%s\x1b[0m', `Digite cd ${repoName} para acessar o seu projeto`)
-console.log('\x1b[36m%s\x1b[0m',`Descomente o arquivo ".env.example", preencha com seus dados e remova o ".example" do nome do arquivo`)
-console.log('\x1b[36m%s\x1b[0m', 'Para rodar a aplicação utilizando docker execute o comando "docker-compose up"')
-console.log('\x1b[36m%s\x1b[0m', 'Para rodar sem o docker utilize o comando "npm run migrate && npm run dev"')
+console.log(`Digite \x1b[36m%s cd ${repoName}\x1b[0m para acessar o seu projeto`)
+console.log(`Descomente o arquivo \x1b[36m%s".env.example"\x1b[0m, preencha com seus dados e remova o ".example" do nome do arquivo`)
+console.log('Para rodar a aplicação utilizando docker execute o comando \x1b[36m%s"docker-compose up"\x1b[0m')
+console.log('Para rodar sem o docker utilize o comando \x1b[36m%s"npm run migrate && npm run dev"\x1b[0m')
