@@ -32,8 +32,13 @@ if(!installedDeps) {
   console.error("\x1b[31m",'Algo deu errado durante a instalação das dependencias do projeto.')
   process.exit(-1);
 }
+console.log(' ')
 console.log(`Projeto ${repoName} criado com sucesso.`)
-console.log(`Digite \x1b[36m%s cd ${repoName}\x1b[0m para acessar o seu projeto`)
-console.log(`Descomente o arquivo \x1b[36m%s".env.example"\x1b[0m, preencha com seus dados e remova o ".example" do nome do arquivo`)
-console.log('Para rodar a aplicação utilizando docker execute o comando \x1b[36m%s"docker-compose up"\x1b[0m')
-console.log('Para rodar sem o docker utilize o comando \x1b[36m%s"npm run migrate && npm run dev"\x1b[0m')
+console.log(' ')
+console.log(`Digite \x1b[36m cd ${repoName}\x1b[0m para acessar o seu projeto`)
+console.log(' ')
+console.log(`Descomente o arquivo \x1b[36m".env.example"\x1b[0m, preencha com seus dados e remova o ".example" do nome do arquivo`)
+console.log(' ')
+console.log('Para rodar a aplicação utilizando docker execute o comando \x1b[36m"docker-compose up"\x1b[0m')
+console.log(' ')
+console.log('Para rodar sem o docker utilize o comando \x1b[36m"npm run migrate && npm run dev"\x1b[0m')
