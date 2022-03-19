@@ -9,8 +9,8 @@
  3. [O que vem instalado no curupira?](#o-que-vem-instalado)
  4. [Instalando o Curupiras](#instalação)
  5. [Configurando as variáveis de ambiente](#configurando-as-variáveis-de-ambiente)
- 6. [🚧Iniciando o Curupiras🚧](#)
- 7. [🚧Scripts Json🚧](#) 
+ 6. [Iniciando o Curupiras](#iniciando-o-curupiras)
+ 7. [Utils](#utils) 
 
 ## Introdução
 
@@ -100,3 +100,30 @@ Caso pretenda utilizar o Docker execute o comando docker-compose up, o projeto j
 | variavel |  valor  | descrição |
 |--|--|--|
 |APP_PORT|number|Porta que vai rodar a API|
+
+## Iniciando o Curupiras
+### Utilizando com docker
+Execute o comando `docker-compose up`
+
+### Sem docker
+ 1. Rode as migrations com o comando `npm run migrate`
+ 2. Execute a api com o `npm run dev`
+
+## Utils
+### Geração automatica chaves RSA256
+O projeto já veio com uma geração de chave public e private, o arquivo está no diretório src > shared > config > jwt
+
+### AppError
+src > shared > errors
+
+Lançador de erros, a baixo um exemplo de como usar
+
+    if (!validPassword) throw  new  AppError('Invalid user', 401)
+AppError('Mensagem com erro', status code)
+
+O erro lançado vai ser capturado pelo middleware ErrorHandler 
+
+### ErrorHandler
+src > shared > errors
+
+Serve para tratar os erros inesperados e os erros do AppError, também envia no console um erro customizado.
