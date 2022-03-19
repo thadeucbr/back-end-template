@@ -1,3 +1,4 @@
+
 ![](https://img.shields.io/npm/l/curupiras) ![](https://img.shields.io/librariesio/release/npm/curupiras) ![](https://img.shields.io/npm/v/curupiras) ![](https://img.shields.io/npm/dt/curupiras)
 # Curupiras (Back-end Template)
 
@@ -7,9 +8,9 @@
  2. [Requisitos para utilizar o curupiras](#requisitos)
  3. [O que vem instalado no curupira?](#o-que-vem-instalado)
  4. [Instalando o Curupiras](#instalação)
- 5. [🚧Configurando as variáveis de ambiente🚧](#configurando-as-variáveis-de-ambiente)
- 6. [🚧Iniciando o Curupiras🚧](#)
- 7. [🚧Scripts Json🚧](#) 
+ 5. [Configurando as variáveis de ambiente](#configurando-as-variáveis-de-ambiente)
+ 6. [Iniciando o Curupiras](#iniciando-o-curupiras)
+ 7. [Utils](#utils) 
 
 ## Introdução
 
@@ -61,7 +62,13 @@ Hoje o Curupiras vem com as seguintes libs instaladas:
 
 Execute o comando `npx curupiras nome-do-seu-projeto`, pode ser que apareça uma mensagem pedindo para instalar o curupiras, digite "y" ou "s".
 
-## Configurando as variáveis de ambiente 🚧(Ainda escrevendo)🚧
+Configure suas variáveis de ambiente no arquivo .env.example e depois remova o .example do nome do arquivo.
+
+Caso pretenda utilizar o Docker execute o comando docker-compose up, o projeto já vem pré configurado com o banco de dados e a aplicação. **Lembre de acessar o contêiner que está rodando o mysql e criar o database que foi declarado no .env**
+
+**Lembrando que o TypeORM não cria o banco o banco de dados, sendo necessário já existir um para que o template funcione.** 
+
+## Configurando as variáveis de ambiente
 
 **TYPEORM PATHS**
 
@@ -75,21 +82,48 @@ Execute o comando `npx curupiras nome-do-seu-projeto`, pode ser que apareça uma
 
 | variavel |  valor  | descrição |
 |--|--|--|
-| TYPEORM_CONNECTION |string| |
-| TYPEORM_LOGGING |boolean| |
-| TYPEORM_SYNCHRONIZE |boolean| |
+| TYPEORM_CONNECTION |string|Indica qual é o banco que estamos utilizando (MySQL, PG, MongoDB, etc)|
+| TYPEORM_LOGGING |boolean|Habilita o modo debug do TypeORM mostrando todas as querys que são executadas|
+| TYPEORM_SYNCHRONIZE |boolean|Realiza a sincronização de todas as entidades com o banco de dados ao iniciar|
 
 **LOCAL DATABASE | TESTING DATABASE | PROD DATABASE**
 | variavel |  valor  | descrição |
 |--|--|--|
-|TYPEORM_HOST |string| |
-|TYPEORM_PORT | string| |
-|TYPEORM_USERNAME|string| |
-|TYPEORM_PASSWORD|string| |
-|TYPEORM_DATABASE|string| |
+|TYPEORM_HOST |string|url do banco de dados caso esteja executando com Docker utilize o nome database|
+|TYPEORM_PORT | string|porta do banco|
+|TYPEORM_USERNAME|string|usuario do banco|
+|TYPEORM_PASSWORD|string|senha do banco|
+|TYPEORM_DATABASE|string|nome do banco|
 
 **SERVER**
 
 | variavel |  valor  | descrição |
 |--|--|--|
 |APP_PORT|number|Porta que vai rodar a API|
+
+## Iniciando o Curupiras
+### Utilizando com docker
+Execute o comando `docker-compose up`
+
+### Sem docker
+ 1. Rode as migrations com o comando `npm run migrate`
+ 2. Execute a api com o `npm run dev`
+
+## Utils
+### Geração automatica chaves RSA256
+O projeto já veio com uma geração de chave public e private, o arquivo está no diretório src > shared > config > jwt
+
+### AppError
+src > shared > errors
+
+Lançador de erros, a baixo um exemplo de como usar
+
+    if (!validPassword) throw  new  AppError('Invalid user', 401)
+AppError('Mensagem com erro', status code)
+
+O erro lançado vai ser capturado pelo middleware ErrorHandler 
+
+### ErrorHandler
+src > shared > errors
+
+Serve para tratar os erros inesperados e os erros do AppError, também envia no console um erro customizado.
