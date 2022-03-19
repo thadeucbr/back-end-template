@@ -1,6 +1,6 @@
 {
   "name": "curupiras",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Curupiras é um template back-end que utiliza Express e TypeScript",
   "keywords": [
     "Express",
@@ -10,7 +10,7 @@
     "TypeORM"
   ],
   "author": "Thadeu Castelo Branco Ramos <thadeucbr@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/thadeucbr/back-end-template/issues"
   },
