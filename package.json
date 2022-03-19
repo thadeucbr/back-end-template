@@ -1,7 +1,7 @@
 {
   "name": "curupiras",
-  "version": "1.0.3-beta.1",
-  "description": "",
+  "version": "1.0.3-beta.2",
+  "description": "Curupiras é um template back-end que utiliza Express e TypeScript",
   "keywords": [
     "Express",
     "Template",
