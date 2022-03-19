@@ -3,13 +3,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const { execSync } = require('child_process');
-const readline = require('readline');
 
-const inquirer = readline.createInterface({input: process.stdin, output: process.stdout})
-let nomeProjeto;
-
-inquirer.question('Qual o nome do projeto?', nome => nomeProjeto = nome);
-console.log(nomeProjeto);
 const runCommand = command => {
   try { 
     execSync(`${command}`, {stdio: 'inherit'})
@@ -24,13 +18,22 @@ const repoName = process.argv[2];
 const gitCheckoutCommand = `git clone --depth 1 https://github.com/thadeucbr/back-end-template ${repoName}`
 const installDepsCommand = `cd ${repoName} && npm install`;
 
-console.log(`Cloning the repository with name ${repoName}`)
+console.log(`Criando o projeto ${repoName}`)
 const checkedOut = runCommand(gitCheckoutCommand);
-if(!checkedOut) process.exit(-1);
+if(!checkedOut) {
+  console.error("\x1b[31m\x1b[0m",'Algo deu errado durante a criação do projeto, não foi possível criar o projeto.')
+  process.exit(-1);
+}
+console.log('Projeto criado com sucesso')
 
-console.log(`Installing dependencies for ${repoName}`);
-
+console.log(`Instalando dependencias para ${repoName}`);
 const installedDeps = runCommand(installDepsCommand);
-if(!installedDeps) process.exit(-1);
-
-console.log('Deu tudo certo!')
+if(!installedDeps) { 
+  console.error("\x1b[31m\x1b[0m",'Algo deu errado durante a instalação das dependencias do projeto.')
+  process.exit(-1);
+}
+console.log(`Projeto ${repoName} criado com sucesso.`)
+console.log('\x1b[36m%s\x1b[0m', `Digite cd ${repoName} para acessar o seu projeto`)
+console.log('\x1b[36m%s\x1b[0m',`Descomente o arquivo ".env.example", preencha com seus dados e remova o ".example" do nome do arquivo`)
+console.log('\x1b[36m%s\x1b[0m', 'Para rodar a aplicação utilizando docker execute o comando "docker-compose up"')
+console.log('\x1b[36m%s\x1b[0m', 'Para rodar sem o docker utilize o comando "npm run migrate && npm run dev"')
